@@ -1,0 +1,22 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Elements xmlns="http://schemas.microsoft.com/sharepoint/">
+  <Field
+    ID="{AD0DF4D6-5A70-4ABE-99FA-10201242E045}"
+    Name="SPD_Business"
+    StaticName="SPD_Business"
+    DisplayName="Business"
+    Group="SPDeloy Columns"
+    Type="Text"
+    Required="false"
+  />
+
+  <!-- Parent ContentType: Item (0x01) -->
+  <ContentType ID="0x0100454418c1211d494abaf4ada765d25af2"
+               Name="SPD Business"
+               Group="SPDeploy Content Types"
+               Description="Test content type with one custom column">
+    <FieldRefs>
+      <FieldRef ID="{AD0DF4D6-5A70-4ABE-99FA-10201242E045}" Name="SPD_Business" />
+    </FieldRefs>
+  </ContentType>
+</Elements>

@@ -1,0 +1,1 @@
+C:\Windows\Microsoft.NET\Framework\v4.0.30319\MSBuild.exe ..\Source\build.msbuild /p:IsPackaging=true /p:buildNumber=1.0.0.0

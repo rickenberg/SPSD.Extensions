@@ -1,0 +1,139 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<helpItems xmlns="http://msh" schema="maml">
+
+  <!--Add-SPFile-->
+  <command:command xmlns:maml="http://schemas.microsoft.com/maml/2004/10" xmlns:command="http://schemas.microsoft.com/maml/dev/command/2004/10" xmlns:dev="http://schemas.microsoft.com/maml/dev/2004/10">
+    <command:details>
+      <command:name>Add-SPFile</command:name>
+      <maml:description>
+        <maml:para>Deploys local files to a document library on SharePoint 2010.</maml:para>
+      </maml:description>
+      <maml:copyright>
+        <maml:para>2014, Bernd Rickenberg (www.rickenberg.net, @berndrickenberg).</maml:para>
+      </maml:copyright>
+      <command:verb>Add</command:verb>
+      <command:noun>SPFile</command:noun>
+      <dev:version>14</dev:version>
+    </command:details>
+    <maml:description>
+      <maml:para>Deploys local files to a document library on SharePoint 2010. You can deploy either a single file or all files in a directory (recursive).</maml:para>
+    </maml:description>
+    <command:syntax>
+      <command:syntaxItem>
+        <maml:name>Add-SPFile</maml:name>
+        <command:parameter required="true" position="named">
+          <maml:name>SiteUrl</maml:name>
+          <command:parameterValue>string</command:parameterValue>
+        </command:parameter>
+        <command:parameter required="true" position="named">
+          <maml:name>RelativeDocLibUrl</maml:name>
+          <command:parameterValue>string</command:parameterValue>
+        </command:parameter>
+        <command:parameter required="false" position="named">
+          <maml:name>FilePath</maml:name>
+          <command:parameterValue>string</command:parameterValue>
+        </command:parameter>
+        <command:parameter required="false" position="named">
+          <maml:name>NoOverwrite</maml:name>
+          <command:parameterValue>boolean</command:parameterValue>
+        </command:parameter>
+        <command:parameter required="false" position="named">
+          <maml:name>AddUpdateOnly</maml:name>
+          <command:parameterValue>boolean</command:parameterValue>
+        </command:parameter>
+        <command:parameter required="false" position="named">
+          <maml:name>Username</maml:name>
+          <command:parameterValue>string</command:parameterValue>
+        </command:parameter>
+        <command:parameter required="false" position="named">
+          <maml:name>Password</maml:name>
+          <command:parameterValue>string</command:parameterValue>
+        </command:parameter>
+      </command:syntaxItem>
+    </command:syntax>
+    <command:parameters>
+      <command:parameter required="true" position="named">
+        <maml:name>SiteUrl</maml:name>
+        <maml:description>
+          <maml:para>The URL of the SharePoint target site</maml:para>
+        </maml:description>
+        <command:parameterValue>string</command:parameterValue>
+      </command:parameter>
+      <command:parameter required="true" position="named">
+        <maml:name>RelativeDocLibUrl</maml:name>
+        <maml:description>
+          <maml:para>Relative URL (from site/SPWeb) to the target document library. You can also specify a sub folder as part of the URL. If folder does not exist in the target library it will created during deployment. E.g. "Shared Documents/Folder-1/Folder-2" is a valid URL.</maml:para>
+        </maml:description>
+        <command:parameterValue>string</command:parameterValue>
+      </command:parameter>
+      <command:parameter required="false" position="named">
+        <maml:name>FilePath</maml:name>
+        <maml:description>
+          <maml:para>Literal (full) path to the file to deploy</maml:para>
+        </maml:description>
+        <command:parameterValue>string</command:parameterValue>
+      </command:parameter>
+      <command:parameter required="false" position="named">
+        <maml:name>NoOverwrite</maml:name>
+        <maml:description>
+          <maml:para>Set this to true if you do not want to overwrite existing files</maml:para>
+        </maml:description>
+        <command:parameterValue>boolean</command:parameterValue>
+      </command:parameter>
+      <command:parameter required="false" position="named">
+        <maml:name>AddUpdateOnly</maml:name>
+        <maml:description>
+          <maml:para>Set this to true if you only want to upload new and modified files</maml:para>
+        </maml:description>
+        <command:parameterValue>boolean</command:parameterValue>
+      </command:parameter>
+      <command:parameter required="false" position="named">
+        <maml:name>Username</maml:name>
+        <maml:description>
+          <maml:para>User name to authenticate against SharePoint.</maml:para>
+        </maml:description>
+        <command:parameterValue>string</command:parameterValue>
+      </command:parameter>
+      <command:parameter required="false" position="named">
+        <maml:name>Password</maml:name>
+        <maml:description>
+          <maml:para>Password in clear text</maml:para>
+        </maml:description>
+        <command:parameterValue>string</command:parameterValue>
+      </command:parameter>
+    </command:parameters>
+    <command:inputTypes />
+    <command:returnValues />
+    <command:terminatingErrors />
+    <command:nonTerminatingErrors />
+    <maml:alertSet />
+    <command:examples>
+      <command:example>
+        <maml:title>    ------------------------ EXAMPLE 1 ------------------------    </maml:title>
+        <dev:code>Add-SPFile -FilePath D:\test.txt -SiteUrl http://demo2 -RelativeDocLibUrl "Shared Documents"</dev:code>
+        <dev:remarks>
+          <maml:para>Deploy single file from literal path</maml:para>
+          <maml:para>The file 'test.txt' is deployed to 'http://demo2/Shared Documents'. You can also deploy it to a sub folder, e.g. 'http://demo2/Shared Document/Folder-1', if you use 'Shared Documents/Folder-1' for the RelativeDocLibUrl parameter.</maml:para>
+        </dev:remarks>
+      </command:example>
+      <command:example>
+        <maml:title>    ------------------------ EXAMPLE 2 ------------------------    </maml:title>
+        <dev:code>Get-Item .\test.txt | Add-SPFile -SiteUrl http://demo2 -RelativeDocLibUrl "Shared Documents"</dev:code>
+        <dev:remarks>
+          <maml:para>Deploy single file from pipe</maml:para>
+          <maml:para>Use the Get-Item command to point to the file to deploy. This is the same operation as shown in Example 1.</maml:para>
+        </dev:remarks>
+      </command:example>
+      <command:example>
+        <maml:title>    ------------------------ EXAMPLE 3 ------------------------    </maml:title>
+        <dev:code>Get-Item .\files | Add-SPFile -SiteUrl http://demo2 -RelativeDocLibUrl "Shared Documents"</dev:code>
+        <dev:remarks>
+          <maml:para>Deploy files recursively from pipe</maml:para>
+          <maml:para>Use the Get-Item command to point to the folder to deploy. All files in the folder and in its sub folders are deployed maintaining the folder structure. Folders that do not exist in the document library are created during deployment. E.g. the source file from .\files\folder-1\test.txt is deployed to 'http://demo2/Shared Documents/folder-1/test.txt'.</maml:para>
+        </dev:remarks>
+      </command:example>
+    </command:examples>
+    <maml:relatedLinks />
+  </command:command>
+  
+</helpItems>
